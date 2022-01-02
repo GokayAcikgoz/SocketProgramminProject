@@ -14,16 +14,16 @@ public class Sender extends Thread {
     
     
     //Parametreli constructor
-    //MSenderi cagirdigimiz zaman bizden Port numarası ister.
+    //MSenderi cagirdigimiz zaman bizden Port numarasÃ½ ister.
     public Sender(int PORT) {
         this.PORT = PORT;
         this.serviceStart(PORT);
     }
     
 
-    //Override islemi Thread classından gelmekte. Threadde Runnabledan implemente ettiği
-    //için runnabledan gelmekte.
-    //Yani runnable interfaceimiz thread ise manager sınıfımız.
+    //Override islemi Thread classÃ½ndan gelmekte. Threadde Runnabledan implemente ettiÃ°i
+    //iÃ§in runnabledan gelmekte.
+    //Yani runnable interfaceimiz thread ise manager sÃ½nÃ½fÃ½mÃ½z.
     @Override
     public void run() {
         try {
@@ -56,7 +56,7 @@ public class Sender extends Thread {
     public void accessServer() throws IOException {
             
             
-        System.out.println("Kaç paket gonderilsin? ");
+        System.out.println("KaÃ§ paket gonderilsin? ");
         
         //Kullanicidan aliyoruz.
         Scanner userEntry = new Scanner(System.in);
@@ -103,9 +103,34 @@ public class Sender extends Thread {
         
         System.out.println("Top. Deneme sayisi : " + attempt);
 
-        System.out.println("Paketler gidene kadar gecen süre : " +(endTime - startTime) + " nano seconds.");
+        System.out.println("Paketler gidene kadar gecen sÃ¼re : " +(endTime - startTime) + " nano seconds.");
         
     }
+	
+	    public void sendMessage(String message) {
+    	output.println(message);
+    }
+    
+    public String getRequest() {
+    	if (input.hasNext()) {
+			return input.nextLine();
+		}else {
+			return "null";
+		}
+    }
+    
+    
+    public void serviceStart(int PORT) {
+    	try {
+			host = InetAddress.getLocalHost();
+			link = new Socket(host, PORT);
+			input = new Scanner(link.getInputStream());
+			output = new PrintWriter(link.getOutputStream(), true);
+		} catch (Exception e) {
+			System.exit(1);
+		}
+    }
+    
     
     
     
