@@ -16,7 +16,7 @@ public class Router extends Root{
     //Bir elemanli dizi olusturuldu. MRouterda tek bir yoldan gitmesi icin.
     private int SENDPORTS[] = new int[1];
     
-    //Constructor olusturduk. Router yollarini belirlemek icin laz�m.
+    //Constructor olusturduk. Router yollarini belirlemek icin lazým.
     public Router(int LISTENPORT,int[] SENDPORTS) {
         this.openListenPort(LISTENPORT);
         this.SENDPORTS = SENDPORTS;
@@ -28,7 +28,7 @@ public class Router extends Root{
         this.SENDPORTS[0] = SENDPORTT;
     }
     
-    //Dinleme servisini ba�lat�r 
+    //Dinleme servisini baþlatýr 
     private void startListenService() throws IOException{
         do {            
             listenSocket = serverSocket.accept();
@@ -160,8 +160,30 @@ public class Router extends Root{
         }
         
         
-        //Router Kodlar� buraya gelecek
+        //Router Kodlarý buraya gelecek
+	    
+        //Hangi yoldan gittiğimiz belli olsun diye
+	//Sehir isimleri verdik
+        public String getPortName(int PORT){
+            return switch(PORT){
+            case 1000->"ANKARA";
+            case 1001->"CORUM";
+            case 1002->"ESKİSEHİR";
+            case 1003->"BOLU";
+            case 1004->"SAMSUN";
+            case 1005->"BURSA";
+            case 1006->"KARABÜK";
+            case 1007->"KASTAMONU";
+            case 1008->"ZONGULDAK";
+            case 1009->"BARTIN";
+            default->"";
+            
+            };
+                
+           
         
+    }
+
         
         
     }
